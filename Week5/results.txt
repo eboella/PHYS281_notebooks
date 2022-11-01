@@ -1,0 +1,5 @@
+Laser intensity [W/cm$^2$], Proton energy [MeV]
+7.98e+20,12.73
+8.64e+20,13.2
+9e+20,13.48
+9.97e+20,14.17
