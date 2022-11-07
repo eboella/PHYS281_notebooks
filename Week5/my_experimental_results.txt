@@ -1,4 +1,4 @@
-Day, Temperature Deg]ree Celsius
+Day, Temperature Degree Celsius
 0.0,-16.286571693977535
 2.0,-10.276528602342369
 4.0,-3.824622923798615
