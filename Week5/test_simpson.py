@@ -8,12 +8,12 @@ def myfunc(x):
 
 xmin = 0
 xmax = np.pi
-Nc = 10
+Nc = 100
 
 result = SimpsonIntegration.simpson(xmin, xmax, Nc, myfunc)
-print("The result of your integral is {0:.3f}".format(result))
+print("The result of your integral is {}".format(result))
 
 x = np.linspace(xmin,xmax,Nc+1)
 y = myfunc(x)
 scipy_res = simps(y,x)
-print("The result of your integral carried out with scipy is {0:.3f}".format(scipy_res))
+print("The result of your integral carried out with scipy is {}".format(scipy_res))

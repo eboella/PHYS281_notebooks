@@ -75,9 +75,6 @@ class SimpsonIntegration:
 
         integral = 0
 
-        fa = f(a)
-        fb = f(b)
-
         for i in range(1,N):
 
             xi = a + i * dx
