@@ -23,7 +23,7 @@ print("At time {}, the conservation of energy is {}%".format(time[-1], 100*abs(e
 # plot conservation of energy vs time
 fig = plt.figure(figsize=(16,8))
 plt.plot(time,abs(ene-ene[0])/ene[0],'k')
-plt.xlabel(r"$t \; [s]$", fontsize=20)
+plt.xlabel(r"$t \; [\omega^{-1}]$", fontsize=20)
 plt.ylabel(r"$|\varepsilon(t) - \varepsilon_0|/\varepsilon_0$", fontsize=20)
 plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
