@@ -1,0 +1,39 @@
+\documentclass[a4,10pt]{article}
+
+\setlength{\oddsidemargin}{0pt} \setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{\paperwidth} \addtolength{\textwidth}{-2truein}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-2truein} \setlength{\topmargin}{0pt}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+
+\usepackage{graphicx,lipsum}
+
+\usepackage[UKenglish]{isodate}
+
+\usepackage[pdftex,pdftitle={Report},pdflang={en-GB}]{hyperref}
+
+\usepackage[ignoreunlbld,norefs,nocites]{refcheck}
+
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\title{Demonstration of importing a figure file generated using matplotlib}
+
+\author{Neil Drummond}
+
+\maketitle
+
+\lipsum[1] Figure \ref{fig:example} shows the plot created with matplotlib.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[clip,height=8cm]{tanh.pdf}
+\caption{Plots of hyperbolic tangent functions, together with some
+  example data. \label{fig:example}}
+\end{figure}
+
+\lipsum[1]
+
+\end{document}
