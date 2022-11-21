@@ -130,7 +130,7 @@ class Particle:
         Method to compute the total linear momentum of the system
         Complete this method and call it from main.py
         """
-        return nan
+        return float('nan')
 
 
 
