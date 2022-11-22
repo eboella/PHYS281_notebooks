@@ -74,7 +74,3 @@ for it in range(0,Nt):
 
 # save data to npy file
 np.save("Coulomb_explosion_dt0p001", data, allow_pickle=True)
-
-
-
-

@@ -10,7 +10,7 @@ class Particle:
     x, y, z: numpy arrays
        Arrays containing the 3D position of each computational particles
     vx, vy, vz: numpy arrays
-       Arrays containing the 3D position of each computational particles
+       Arrays containing the 3D velocity of each computational particles
     name: string
        Name of the species
     q: numpy array
@@ -30,7 +30,6 @@ class Particle:
         self.vy = np.array(vy, dtype=float)
         self.vz = np.array(vz, dtype=float)
         self.q = np.array(q, dtype=float)
-        #npart = self.z.size
         self.Er = np.zeros_like(q)
     
     def __str__(self):
@@ -113,8 +112,10 @@ class Particle:
         for j in range(0,npart):
             rj = np.sqrt( (self.x - self.x[j])**2 + (self.y - self.y[j])**2 + (self.z - self.z[j])**2)
             valid = rj != 0
+            # pay attention to the 0.5 factor to avoid double counting the contribution of particles
             U += np.sum(0.5 * self.q[valid] * self.q[j] / rj[valid])
         
+        #these lines do the same as the previous lines, but the code is slower, even if more readable
         #U2 = 0
         #for i in range(0,npart):
         #    for j in range(0,npart):
