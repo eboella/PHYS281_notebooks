@@ -4,7 +4,7 @@
 # called tkinter to create a "canvas" inside a window, on which we
 # plot points.
 
-import tkinter
+import tkinter as tk
 
 
 def in_set(x,y,maxits=100):
@@ -23,14 +23,15 @@ def in_set(x,y,maxits=100):
 
 
 # Create a Tk instance.
-root=tkinter.Tk()
+root=tk.Tk()
 # Halt if the window is closed.
 root.protocol("WM_DELETE_WINDOW",root.quit())
+root.winfo_toplevel().title("Mandelbrot set")
 
 # Create a square canvas whose side length is the minimum of the
 # number of pixels in the x and y directions.
 npixels=int(0.80*min(root.winfo_screenwidth(),root.winfo_screenheight()))
-canvas=tkinter.Canvas(root,width=npixels,height=npixels)
+canvas=tk.Canvas(root,width=npixels,height=npixels)
 canvas.pack()
 
 # Range of x (real part) and y (imaginary part) to include in plot.
@@ -47,35 +48,46 @@ ymin=-1.5 ; ymax=ymin+sidelength
 # because we are looking at a square region).
 dx=sidelength/float(npixels)  ;  dy=dx
 
-# Loop over points to test.  If they are in the Mandelbrot set then draw a
-# point (actually a little line) on the canvas.
+# Update the plot ~20 times as the Mandelbrot set is calculated.
+update_period=npixels//20
+
+# Loop over points to test.  If they are in the Mandelbrot set then
+# draw a point (actually a little line) on the canvas.  If you're
+# looking for a speedup, it would be a bit quicker to create a
+# tk.PhotoImage object holding either the entire plot, or a series of
+# chunks of the plot.
 x=xmin
 for ix in range(npixels):
     y=ymin
     for iy in range(npixels):
         if in_set(x,y):
-            _=canvas.create_line(ix,iy,ix+1,iy+1,fill="#000000")
+            _l=canvas.create_line(ix,iy,ix+1,iy+1,fill="#000000")
         y+=dy
-    root.update() # Update the canvas after each loop over y.
     x+=dx
+    if ix%update_period==update_period-1:
+        root.update() # Update canvas after every update_period loops over y.
 
 root.mainloop() # Wait for the user to close the window.
 
 # Suggested extensions (increasingly challenging):
-
-# * Manually adjust the plot region (sidelength, xmin and ymin) to
-#   zoom in on some pretty regions of the set, and then rerun the
-#   program.  What happens if you zoom in too far?  How can you
-#   restore the accuracy of the plot?
-
+#
+# * Manually adjust the plot region (the sidelength, xmin and ymin
+#   parameters) to zoom in on some pretty regions of the set, and then
+#   rerun the program.  What happens if you zoom in too far?  How can
+#   you restore the accuracy of the plot?
+#
+# * Add a printout of the mouse pointer position on the Argand plane,
+#   to help you zoom appropriately.
+#
 # * Modify function in_set so that it returns the number of iterations
-#   required to reach |z|>2 (or, say, a negative integer if the point
-#   being tested lies in the Mandelbrot set).  Use these results to
-#   plot different colours for points that are not in the set.
-
+#   required to reach |z|>2 (or zero if the point being tested lies in
+#   the Mandelbrot set).  Use these results to plot different colours
+#   for points that are not in the set.
+#
 # * Allow the user to drag and select a "zoom square" with the mouse
 #   pointer (will need to look up event handling in tkinter), and then
 #   redraw the set for that region.
-
-# * (For experts) Make the code faster!  Rewrite the expensive parts
-#   in C or Fortran and parallelise them.
+#
+# * (For experts) Make the code faster!  E.g., create a PhotoImage
+#   object rather than a set of lines.  Rewrite the expensive parts in
+#   C or Fortran and parallelise them.
