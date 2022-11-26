@@ -82,7 +82,8 @@ root.mainloop() # Wait for the user to close the window.
 # * Modify function in_set so that it returns the number of iterations
 #   required to reach |z|>2 (or zero if the point being tested lies in
 #   the Mandelbrot set).  Use these results to plot different colours
-#   for points that are not in the set.
+#   for points that are not in the set, to create a nice, psychedelic
+#   effect.
 #
 # * Allow the user to drag and select a "zoom square" with the mouse
 #   pointer (will need to look up event handling in tkinter), and then

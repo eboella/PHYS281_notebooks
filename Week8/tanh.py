@@ -82,10 +82,9 @@ yy=np.tanh(2.0*xx)
 ax.plot(xx,yy,c='b',ls=":",label=r"$y=\tanh(2x)$")
 
 # Load some data from a text file holding three columns: x data, y
-# data and error bars on the y data.
-
+# data and error bars on the y data.  Plot the data as points with
+# error bars, but without lines joining the points.
 xx,yy,err_yy=np.loadtxt("example_data.dat",unpack=True)
-
 ax.errorbar(xx,yy,err_yy,label="Example data",ls="",marker="o",c="k")
 
 # Axes always need labels.  If plotting physical quantities then you
@@ -95,8 +94,9 @@ ax.errorbar(xx,yy,err_yy,label="Example data",ls="",marker="o",c="k")
 ax.set_xlabel(r'$x$')
 ax.set_ylabel(r'$y$')
 
-# Add a legend (label which curve is which).  Override the default font size,
-# so the legend fits on the graph (but is still big enough).
+# Add a legend (labelling which curve is which).  Override the default
+# font size set above, so the legend fits on the graph (but is still
+# big enough).
 ax.legend(fontsize=15)
 
 # Adjust the padding around subplots.
